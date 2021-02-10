@@ -1,6 +1,6 @@
 using System;
 
-namespace ASP.NET_Core_UI_Free_Admin_Template_master.Models
+namespace DFCP.Models
 {
     public class ErrorViewModel
     {

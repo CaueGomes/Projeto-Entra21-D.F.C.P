@@ -16,7 +16,7 @@ var random = function random() {
 }; // eslint-disable-next-line no-unused-vars
 
 
-var Despesas = new Chart($('#canvas-1'), {
+var lineChart = new Chart($('#canvas-1'), {
   type: 'line',
   data: {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
