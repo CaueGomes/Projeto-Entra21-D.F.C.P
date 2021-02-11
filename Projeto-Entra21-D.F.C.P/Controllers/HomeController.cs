@@ -82,13 +82,27 @@ namespace Projeto_Entra21_DFCP.Controllers
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidPasscode(senha)
                 return RedirectToAction("/Home/Cadastro");
             }
+            if(cadastrar.ValidarUsuario(nome) == "")
+            {
+                validateBool = true;
+            }
+            else
+            {
+                //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função cadastrar.Validarusuario(nome)
+                return RedirectToAction("/Home/Cadastro");
+            }
             if(validateBool)
             {
                 cadastrar.Inserir(nome, email, senha, idade, profissao);
             }
             return RedirectToAction("/Home/index");
         }
-
+        public IActionResult GanhosAPI(string nome, double valor, string motivo)
+        {
+            Ganhos ganhos = new Ganhos();
+            ganhos.CadastrarValor(nome, valor, motivo);
+            return RedirectToAction("/Home/Ganhos");
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
