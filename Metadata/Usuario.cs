@@ -17,5 +17,9 @@ namespace Metadata
         public int ContasPagarId { get; set; }
         public List<DespesasDesnecessarias> Despesas { get; set; }
         public int DespesasId { get; set; }
+        public List<Ganhos> ganhos { get; set; }
+        public int GanhosId { get; set; }
+        public List<RemuneracaoTotal> saldo { get; set; }
+        public int SaldoId { get; set; }
     }
 }
