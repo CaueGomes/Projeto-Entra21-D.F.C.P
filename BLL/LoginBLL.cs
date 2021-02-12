@@ -3,7 +3,7 @@ using BLL.Interfaces;
 
 namespace BLL
 {
-    public class Login : ILoginCadastro
+    public class LoginBLL : ILoginCadastro
     {
 		
 	}

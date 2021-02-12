@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using DAL;
+using BLL.Interfaces;
 using Metadata;
 
-namespace BLL.Interfaces
+namespace BLL
 {
-    interface ILoginCadastro
+    public class CadastrarBLL : ILoginCadastro
     {
         public void Inserir(Usuario usuario)
         {
