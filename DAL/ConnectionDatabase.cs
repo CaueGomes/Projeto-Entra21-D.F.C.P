@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Data.SqlClient;
+using Metadata;
 
 namespace DAL
 {
@@ -11,15 +12,15 @@ namespace DAL
         public static SqlCommand cmd;
         public static SqlDataReader dataReader;
 
-        public static void Insert(string nome, string email, string senha, int idade, string profissao)
+        public static void Insert(Usuario usuario)
         {
-            string insert = $"INSERT Into Usuario (Nome, Email, Senha, Idade, Profissao) values ('{nome}','{email}','{senha}','{idade}','{profissao}')";
+            string insert = $"INSERT Into Usuario (Nome, Email, Senha, Idade, Profissao) values ('{usuario.Nome}','{usuario.Email}','{usuario.Senha}','{usuario.Idade}','{usuario.Profissao}')";
             cmd = new SqlCommand(insert, con);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public static void Update(string nome)
+        public static void Update(Usuario usuario)
         {
             int Id;
             string sqlId = "Select * FROM Usuario";
@@ -28,17 +29,17 @@ namespace DAL
             dataReader = cmd.ExecuteReader();
             while (dataReader.Read())
             {
-                if (Convert.ToString(dataReader["Nome"]) == nome)
+                if (Convert.ToString(dataReader["Nome"]) == usuario.Nome)
                 {
                     Id = Convert.ToInt32(dataReader["Id"]);
-                    string update = $"UPDATE Usuario Set Nome = '{nome}' WHERE Id ='{Id}'";
+                    string update = $"UPDATE Usuario Set Nome = '{usuario.Nome}' WHERE Id ='{Id}'";
                     break;
                 }
             }
-            cmd = new SqlCommand(nome, con);
+            cmd = new SqlCommand(usuario.Nome, con);
             con.Close();
         }
-        public static string ValidarUsuarioExistente(string nome)
+        public static string ValidarUsuarioExistente(Usuario usuario)
         {
             string sqlId = "Select * FROM Usuario";
             cmd = new SqlCommand(sqlId, con);
@@ -46,7 +47,7 @@ namespace DAL
             dataReader = cmd.ExecuteReader();
             while (dataReader.Read())
             {
-                if (Convert.ToString(dataReader["Nome"]) == nome)
+                if (Convert.ToString(dataReader["Email"]) == usuario.Email)
                 {
                     return "Usuário ja existe no banco de dados!!";
                 }

@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Metadata;
 using BLL;
 using BLL.Helper;
+//using Projeto_Entra21_DFCP.Models;
 
 
 namespace Projeto_Entra21_DFCP.Controllers
@@ -51,20 +53,20 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
-        public IActionResult CadastroAPI(string nome, string email, string senha, int idade, string profissao)
+        public IActionResult CadastroAPI(Usuario usuario)
         {
             bool validateBool = false;
-            Cadastrar cadastrar = new Cadastrar();
-            if(HelpValidate.IsValidName(nome) == "")
+            CadastrarBLL cadastrar = new CadastrarBLL();
+            if(HelpValidate.IsValidName(usuario.Nome) == "")
             {
                 validateBool = true;
             }
             else
             {
-                //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidName(nome)
+                //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidName(usuario.Nome)
                 return RedirectToAction("/Home/Cadastro");
             }
-            if(HelpValidate.IsValidEmail(email) == "")
+            if(HelpValidate.IsValidEmail(usuario.Email) == "")
             {
                 validateBool = true;
             }
@@ -73,7 +75,7 @@ namespace Projeto_Entra21_DFCP.Controllers
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidEmail(email)
                 return RedirectToAction("/Home/Cadastro");
             }
-            if (HelpValidate.IsValidPasscode(senha) == "")
+            if (HelpValidate.IsValidPasscode(usuario.Senha) == "")
             {
                 validateBool = true;
             }
@@ -82,7 +84,7 @@ namespace Projeto_Entra21_DFCP.Controllers
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidPasscode(senha)
                 return RedirectToAction("/Home/Cadastro");
             }
-            if(cadastrar.ValidarUsuario(nome) == "")
+            if(cadastrar.ValidarUsuario(usuario) == "")
             {
                 validateBool = true;
             }
@@ -93,13 +95,13 @@ namespace Projeto_Entra21_DFCP.Controllers
             }
             if(validateBool)
             {
-                cadastrar.Inserir(nome, email, senha, idade, profissao);
+                cadastrar.Inserir(usuario);
             }
             return RedirectToAction("/Home/index");
         }
         public IActionResult GanhosAPI(string nome, double valor, string motivo)
         {
-            Ganhos ganhos = new Ganhos();
+            GanhosBLL ganhos = new GanhosBLL();
             ganhos.CadastrarValor(nome, valor, motivo);
             return RedirectToAction("/Home/Ganhos");
         }

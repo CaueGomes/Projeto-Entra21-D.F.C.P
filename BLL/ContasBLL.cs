@@ -5,7 +5,7 @@ using BLL.Interfaces;
 
 namespace BLL
 {
-    class Gastos : IPaginas
+    class ContasBLL : IPaginas
     {
     }
 }
