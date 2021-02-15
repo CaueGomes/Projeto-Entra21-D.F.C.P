@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Metadata
 {
-    public class RemuneracaoTotal
+    public class Saldo
     {
         public int Id { get; set; }
-        public double RemuneracaoIndividual { get; set; }
-        public double RemuneracaoFamilia { get; set; }
+        public string Motivo { get; set; }
+        public double Valor { get; set; }
         public Usuario Usuario { get; set; }
         public int UsuarioId { get; set; }
     }

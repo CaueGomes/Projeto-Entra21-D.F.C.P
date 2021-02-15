@@ -28,5 +28,17 @@ namespace BLL
             string tabela = "Ganhos";
             ConnectionDatabase.InsertValor(tabela, nome, valor, motivo);
         }
+        public double SomaValores(Usuario usuario)
+        {
+            double total = 0;
+            string tabela = "Ganhos"; string motivo = "Motivo";
+            List<double> lt = new List<double>();
+            ConnectionDatabase.HistóricoValores(tabela, motivo, usuario.Nome, out lt);
+            for (int i = 0; i < lt.Count; i++)
+            {
+                total += lt[i];
+            }
+            return total;
+        }
     }
 }

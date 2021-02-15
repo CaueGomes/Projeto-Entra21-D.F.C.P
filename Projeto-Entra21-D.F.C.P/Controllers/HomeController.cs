@@ -53,6 +53,7 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
+        [HttpPost]
         public IActionResult CadastroAPI(Usuario usuario)
         {
             bool validateBool = false;
@@ -99,11 +100,26 @@ namespace Projeto_Entra21_DFCP.Controllers
             }
             return RedirectToAction("/Home/index");
         }
-        public IActionResult GanhosAPI(string nome, double valor, string motivo)
+        [HttpPost]
+        public IActionResult GanhosAPI(Ganhos ganhos)
         {
-            GanhosBLL ganhos = new GanhosBLL();
-            ganhos.CadastrarValor(nome, valor, motivo);
+            GanhosBLL ganhosBLL = new GanhosBLL();
+            ganhosBLL.CadastrarValor(Convert.ToString(ganhos.Usuario), ganhos.Valor, ganhos.Motivo);
             return RedirectToAction("/Home/Ganhos");
+        }
+        [HttpPost]
+        public IActionResult ContasAPI(Contas contas)
+        {
+            ContasBLL contasBLL = new ContasBLL();
+            contasBLL.CadastrarValor(Convert.ToString(contas.Usuario), contas.Valor, contas.Conta);
+            return RedirectToAction("/Home/Contas");
+        }
+
+        //Caue, Abre o código abaixo
+        public IActionResult LoginAPI(Usuario usuario)
+        {
+            //Terminar essa verificação
+            return RedirectToAction("/Home/Home");
         }
 
 
