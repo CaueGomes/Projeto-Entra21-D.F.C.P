@@ -12,13 +12,22 @@ namespace DAL
         public static SqlCommand cmd;
         public static SqlDataReader dataReader;
 
-        public static void Insert(Usuario usuario)
+        public static bool Insert(Usuario usuario)
         {
-            string insert = $"INSERT Into Usuario (Nome, Email, Senha, Idade, Profissao) values ('{usuario.Nome}','{usuario.Email}','{usuario.Senha}','{usuario.Idade}','{usuario.Profissao}')";
-            cmd = new SqlCommand(insert, con);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
+            try
+            {
+                string insert = $"INSERT Into Usuarios (Nome, Email, Senha, Idade, Profissao) values ('{usuario.Nome}','{usuario.Email}','{usuario.Senha}','{usuario.Idade}','{usuario.Profissao}')";
+                cmd = new SqlCommand(insert, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
         }
         public static void Update(Usuario usuario)
         {
@@ -107,10 +116,8 @@ namespace DAL
                 cmd.ExecuteNonQuery();
                 break;
             }
-
             con.Close();
             dataReader.Close();
-            
         }
     }
 }
