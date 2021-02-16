@@ -29,95 +29,141 @@ namespace DAL
                 return false;
             }
         }
-        public static void Update(Usuario usuario)
+        public static bool Update(Usuario usuario)
         {
-            int Id;
-            string sqlId = "Select * FROM Usuario";
-            cmd = new SqlCommand(sqlId, con);
-            con.Open();
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
+            try
             {
-                if (Convert.ToString(dataReader["Nome"]) == usuario.Nome)
+                int Id;
+                string sqlId = "Select * FROM Usuario";
+                cmd = new SqlCommand(sqlId, con);
+                con.Open();
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
                 {
-                    Id = Convert.ToInt32(dataReader["Id"]);
-                    string update = $"UPDATE Usuario Set Nome = '{usuario.Nome}' WHERE Id ='{Id}'";
+                    if (Convert.ToString(dataReader["Nome"]) == usuario.Nome)
+                    {
+                        Id = Convert.ToInt32(dataReader["Id"]);
+                        string update = $"UPDATE Usuario Set Nome = '{usuario.Nome}' WHERE Id ='{Id}'";
+                        break;
+                    }
+                }
+                cmd = new SqlCommand(usuario.Nome, con);
+                con.Close();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+        public static bool ValidarUsuarioExistente(Usuario usuario)
+        {
+            try
+            {
+                string sqlId = "Select * FROM Usuario";
+                cmd = new SqlCommand(sqlId, con);
+                con.Open();
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    if (Convert.ToString(dataReader["Email"]) == usuario.Email)
+                    {
+                        return false;
+                    }
+                }
+                con.Close();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+        public static bool HistóricoValores(string tabela, string nome, out List<double> valor)
+        {
+            try
+            {
+                valor = new List<double>();
+                string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
+                cmd = new SqlCommand(select, con);
+                con.Open();
+                dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    int i = 0;
+
+                    valor[i] = (double)dataReader["Valor"];
+                    i++;
+                }
+
+                dataReader.Close();
+                con.Close();
+                return false;
+            }
+            catch(Exception ex)
+            {
+                valor = new List<double>();
+                Console.WriteLine(ex);
+                return true;
+            }
+        }
+        public static bool HistóricoNomes(string tabela, string motivo, string nome, out List<string> nomeConta)
+        {
+            try
+            {
+                nomeConta = new List<string>();
+                string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
+                cmd = new SqlCommand(select, con);
+                con.Open();
+                dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    int i = 0;
+
+                    nomeConta[i] = (string)dataReader[motivo];
+                    i++;
+                }
+
+                dataReader.Close();
+                con.Close();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                nomeConta = new List<string>();
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+        public static bool InsertValor(string tabela, string nome, double valor, string motivo)
+        {
+            try
+            {
+                string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
+                cmd = new SqlCommand(select, con);
+                con.Open();
+                dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    string insert = $"INSERT Into '{tabela}' (Motivo, Valor) values ('{motivo}','{valor}')";
+                    cmd = new SqlCommand(insert, con);
+                    cmd.ExecuteNonQuery();
                     break;
                 }
+                con.Close();
+                dataReader.Close();
+                return true;
             }
-            cmd = new SqlCommand(usuario.Nome, con);
-            con.Close();
-        }
-        public static string ValidarUsuarioExistente(Usuario usuario)
-        {
-            string sqlId = "Select * FROM Usuario";
-            cmd = new SqlCommand(sqlId, con);
-            con.Open();
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
+            catch(Exception ex)
             {
-                if (Convert.ToString(dataReader["Email"]) == usuario.Email)
-                {
-                    return "Usuário ja existe no banco de dados!!";
-                }
+                Console.WriteLine(ex);
+                return false;
             }
-            con.Close();
-            return "";
-        }
-        public static void HistóricoValores(string tabela, string motivo, string nome, out List<double> valor)
-        {
-            valor = new List<double>();
-            string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
-            cmd = new SqlCommand(select, con);
-            con.Open();
-            dataReader = cmd.ExecuteReader();
-            
-            while (dataReader.Read())
-            {
-                int i = 0;
-
-                valor[i] = (double)dataReader["Valor"];
-                i++;
-            }
-
-            dataReader.Close();
-            con.Close();
-        }
-        public static void HistóricoNomes(string tabela, string motivo, string nome, out List<string> nomeConta)
-        {
-            nomeConta = new List<string>();
-            string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
-            cmd = new SqlCommand(select, con);
-            con.Open();
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
-            {
-                int i = 0;
-
-                nomeConta[i] = (string)dataReader[motivo];
-                i++;
-            }
-
-            dataReader.Close();
-            con.Close();
-        }
-        public static void InsertValor(string tabela, string nome, double valor, string motivo)
-        {
-            string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
-            cmd = new SqlCommand(select, con);
-            con.Open();
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
-            {
-                string insert = $"INSERT Into '{tabela}' (Motivo, Valor) values ('{motivo}','{valor}')";
-                cmd = new SqlCommand(insert, con);
-                cmd.ExecuteNonQuery();
-                break;
-            }
-            con.Close();
-            dataReader.Close();
         }
     }
 }

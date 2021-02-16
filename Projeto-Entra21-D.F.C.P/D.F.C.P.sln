@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metadata", "..\Metadata\Met
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "..\BLL\BLL.csproj", "{B181BDB8-6367-4E0E-A4C1-C091A3501FE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDAL", "..\TestDAL\TestDAL.csproj", "{2A6C7704-37EF-4252-95AB-CCC9AA9359CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B181BDB8-6367-4E0E-A4C1-C091A3501FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B181BDB8-6367-4E0E-A4C1-C091A3501FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B181BDB8-6367-4E0E-A4C1-C091A3501FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A6C7704-37EF-4252-95AB-CCC9AA9359CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6C7704-37EF-4252-95AB-CCC9AA9359CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6C7704-37EF-4252-95AB-CCC9AA9359CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6C7704-37EF-4252-95AB-CCC9AA9359CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
