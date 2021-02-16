@@ -81,6 +81,33 @@ namespace DAL
                 return false;
             }
         }
+        public static bool ValidaLogin(Usuario usuario)
+        {
+            string sqlId = "Select * FROM Usuario";
+            cmd = new SqlCommand(sqlId, con);
+            con.Open();
+            dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
+            {
+                if (Convert.ToString(dataReader["Email"]) == usuario.Email)
+                {
+                    if (usuario.Senha == (string)dataReader["Senha"])
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            con.Close();
+            return false;
+        }
         public static bool HistóricoValores(string tabela, string nome, out List<double> valor)
         {
             try

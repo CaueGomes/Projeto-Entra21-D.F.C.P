@@ -14,7 +14,11 @@ namespace BLL.Interfaces
         }
         public string ValidarUsuario(Usuario usuario)
         {
-            return ConnectionDatabase.ValidarUsuarioExistente(usuario);
+            if (ConnectionDatabase.ValidarUsuarioExistente(usuario))
+            {
+                return "deu certo";
+            }
+            return "ERROR";
         }
     }
 }

@@ -61,5 +61,14 @@ namespace DALTest
             bool resultado = ConnectionDatabase.InsertValor(tabela, nome, valor, motivo);
             Assert.IsTrue(resultado);
         }
+
+        //[TestMethod]
+        //public void TestLogin()
+        //{
+        //    Usuario usuario = new Usuario();
+        //    string tabela = "Ganhos"; string motivo = "Motivo"; string nome = "João"; double valor = 0;
+        //    bool resultado = ConnectionDatabase.ValidaLogin();
+        //    Assert.IsTrue(resultado);
+        //}
     }
 }
