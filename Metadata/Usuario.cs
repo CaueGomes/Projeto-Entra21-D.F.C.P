@@ -13,13 +13,9 @@ namespace Metadata
         public string Senha { get; set; }
         public int Idade { get; set; }
         public string Profissao { get; set; }
-        public List<ContasPagar> Contas { get; set; }
-        public int ContasPagarId { get; set; }
-        public List<DespesasDesnecessarias> Despesas { get; set; }
-        public int DespesasId { get; set; }
+        public List<Contas> Contas { get; set; }
+        public List<Gastos> Despesas { get; set; }
         public List<Ganhos> ganhos { get; set; }
-        public int GanhosId { get; set; }
-        public List<RemuneracaoTotal> saldo { get; set; }
-        public int SaldoId { get; set; }
+        public List<Saldo> saldo { get; set; }
     }
 }

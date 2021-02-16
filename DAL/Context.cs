@@ -10,9 +10,9 @@ namespace DAL
     public class Context : DbContext
     {
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<RemuneracaoTotal> RemuneracoesTotais { get; set; }
-        public DbSet<ContasPagar> Contas { get; set; }
-        public DbSet<DespesasDesnecessarias> Despesas { get; set; }
+        public DbSet<Saldo> RemuneracoesTotais { get; set; }
+        public DbSet<Contas> Contas { get; set; }
+        public DbSet<Gastos> Despesas { get; set; }
         public DbSet<Ganhos> Ganhos { get; set; }
 
 
