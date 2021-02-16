@@ -20,7 +20,7 @@ namespace BLL
         {
             string tabela = "Despesas"; string motivo = "Compra";
             List<double> lt = new List<double>();
-            ConnectionDatabase.HistóricoValores(tabela, motivo, usuario.Nome, out lt);
+            ConnectionDatabase.HistóricoValores(tabela, usuario.Nome, out lt);
             return lt;
         }
         public void CadastrarValor(string nome, double valor, string motivo)
@@ -33,7 +33,7 @@ namespace BLL
             double total = 0;
             string tabela = "Despesas"; string motivo = "Compra";
             List<double> lt = new List<double>();
-            ConnectionDatabase.HistóricoValores(tabela, motivo, usuario.Nome, out lt);
+            ConnectionDatabase.HistóricoValores(tabela, usuario.Nome, out lt);
             for (int i = 0; i < lt.Count; i++)
             {
                 total += lt[i];
