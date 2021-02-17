@@ -19,5 +19,16 @@ namespace BLL
             }
             return "ERROR";
         }
+        public string ValidaLogin(Usuario usuario)
+        {
+            if (ConnectionDatabase.ValidaLogin(usuario))
+            {
+                return "";
+            }
+            else
+            {
+                return "ERROR";
+            }
+        }
     }
 }

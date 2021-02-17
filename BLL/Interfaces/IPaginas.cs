@@ -27,9 +27,9 @@ namespace BLL.Interfaces
             string tabela = "";
             ConnectionDatabase.InsertValor(usuario, tabela, valor, motivo);
         }
-        public double SomaValores(Usuario usuario)
+        public void SomaValores(Usuario usuario, out double total)
         {
-            double total = 0;
+            total = 0;
             string tabela = "";
             List<double> lt = new List<double>();
             ConnectionDatabase.HistóricoValores(tabela, usuario.Id, out lt);
@@ -37,7 +37,6 @@ namespace BLL.Interfaces
             {
                 total += lt[i];
             }
-            return total;
         }
     }
 }

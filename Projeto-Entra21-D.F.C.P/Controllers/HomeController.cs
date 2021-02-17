@@ -53,9 +53,13 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult CadastroAPI(Usuario usuario)
+        public IActionResult CadastroAPI(string nome, string email, string senha, int idade, string profissao)
         {
+            Usuario usuario = new Usuario();
+            usuario.Nome = nome; usuario.Email = email; usuario.Senha = senha;
+            usuario.Idade = idade; usuario.Profissao = profissao;
             bool validateBool = false;
             CadastrarBLL cadastrar = new CadastrarBLL();
             if(HelpValidate.IsValidName(usuario.Nome) == "")
@@ -101,27 +105,59 @@ namespace Projeto_Entra21_DFCP.Controllers
             return RedirectToAction("/Home/index");
         }
         [HttpPost]
-        public IActionResult GanhosAPI(Ganhos ganhos)
+        public IActionResult GanhosAPI(string motivo, double valor, int id)
         {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
             GanhosBLL ganhosBLL = new GanhosBLL();
-            ganhosBLL.CadastrarValor(Convert.ToString(ganhos.Usuario), ganhos.Valor, ganhos.Motivo);
-            return RedirectToAction("/Home/Ganhos");
+            ganhosBLL.CadastrarValor(usuario, valor, motivo);
+            return RedirectToAction("/Home/");
         }
         [HttpPost]
-        public IActionResult ContasAPI(Contas contas)
+        public IActionResult ContasAPI(string motivo, double valor, int id)
         {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
             ContasBLL contasBLL = new ContasBLL();
-            contasBLL.CadastrarValor(Convert.ToString(contas.Usuario), contas.Valor, contas.Conta);
-            return RedirectToAction("/Home/Contas");
+            contasBLL.CadastrarValor(usuario, valor, motivo);
+            return RedirectToAction("/Home/");
         }
 
-        //Caue, Abre o código abaixo
-        public IActionResult LoginAPI(Usuario usuario)
+        public IActionResult LoginAPI(string email, string senha)
         {
-            //Terminar essa verificação
-            return RedirectToAction("/Home/Home");
+            Usuario usuario = new Usuario();
+            LoginBLL loginBLL = new LoginBLL();
+            usuario.Email = email; usuario.Senha = senha;
+            loginBLL.ValidarUsuario(usuario);
+            if (loginBLL.ValidaLogin(usuario) != "")
+            {
+                return RedirectToAction("/Home/Login");
+            }
+            return RedirectToAction("/Home/");
         }
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+
+        public IActionResult SaldoAPI(string motivo, double valor, int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
+            SaldoBLL saldoBLL = new SaldoBLL();
+            saldoBLL.CadastrarValor(usuario, valor, motivo);
+            return RedirectToAction("/Homes/");
+        }
+
+        public IActionResult GastosAPI(string motivo, double valor, int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
+            GastosBLL gastosBLL = new GastosBLL();
+            gastosBLL.CadastrarValor(usuario, valor, motivo);
+            return RedirectToAction("/Home/");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
