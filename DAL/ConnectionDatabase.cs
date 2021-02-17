@@ -123,18 +123,18 @@ namespace DAL
         {
             try
             {
-                valor = new List<double>();
-                string select = $"Select * FROM {tabela} WHERE IdUsuario = '{id}'";
+                valor = new List<double>(5);
+                string select = $"Select * FROM {tabela} WHERE IdUsuario = 1015";
                 cmd = new SqlCommand(select, con);
                 con.Open();
                 dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
                 {
-                    int i = 0;
+                    
+                    double recebe = (double)dataReader["Valor"];
+                    valor.Add(recebe); 
 
-                    valor[i] = (double)dataReader["Valor"];
-                    i++;
                 }
 
                 dataReader.Close();
@@ -160,10 +160,8 @@ namespace DAL
 
                 while (dataReader.Read())
                 {
-                    int i = 0;
-
-                    nomeConta[i] = (string)dataReader[motivo];
-                    i++;
+                    string recebe = (string)dataReader[motivo];
+                    nomeConta.Add(recebe);
                 }
 
                 dataReader.Close();
