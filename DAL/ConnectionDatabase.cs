@@ -29,12 +29,13 @@ namespace DAL
                 return false;
             }
         }
-        public static bool Update(Usuario usuario)
+        public static bool Update(Usuario usuario, string nome)
         {
             try
             {
                 int Id;
-                string sqlId = "Select * FROM Usuario";
+                string sqlId = "Select * FROM Usuarios";
+                string update = "";
                 cmd = new SqlCommand(sqlId, con);
                 con.Open();
                 dataReader = cmd.ExecuteReader();
@@ -43,11 +44,13 @@ namespace DAL
                     if (Convert.ToString(dataReader["Nome"]) == usuario.Nome)
                     {
                         Id = Convert.ToInt32(dataReader["Id"]);
-                        string update = $"UPDATE Usuario Set Nome = '{usuario.Nome}' WHERE Id ='{Id}'";
+                        update = $"UPDATE Usuarios Set Nome = '{nome}' WHERE Id ='{Id}'";
                         break;
                     }
                 }
-                cmd = new SqlCommand(usuario.Nome, con);
+                dataReader.Close();
+                cmd = new SqlCommand(update, con);
+                cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
@@ -61,7 +64,7 @@ namespace DAL
         {
             try
             {
-                string sqlId = "Select * FROM Usuario";
+                string sqlId = "Select * FROM Usuarios";
                 cmd = new SqlCommand(sqlId, con);
                 con.Open();
                 dataReader = cmd.ExecuteReader();
@@ -83,37 +86,45 @@ namespace DAL
         }
         public static bool ValidaLogin(Usuario usuario)
         {
-            string sqlId = "Select * FROM Usuario";
-            cmd = new SqlCommand(sqlId, con);
-            con.Open();
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
+            try
             {
-                if (Convert.ToString(dataReader["Email"]) == usuario.Email)
+                string sqlId = "Select * FROM Usuarios";
+                cmd = new SqlCommand(sqlId, con);
+                con.Open();
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
                 {
-                    if (usuario.Senha == (string)dataReader["Senha"])
+                    if (Convert.ToString(dataReader["Email"]) == usuario.Email)
                     {
-                        return true;
+                        if (usuario.Senha == (string)dataReader["Senha"])
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
                         return false;
                     }
                 }
-                else
-                {
-                    return false;
-                }
+                con.Close();
+                return false;
             }
-            con.Close();
-            return false;
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
         }
-        public static bool HistóricoValores(string tabela, string nome, out List<double> valor)
+        public static bool HistóricoValores(string tabela, int id, out List<double> valor)
         {
             try
             {
                 valor = new List<double>();
-                string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
+                string select = $"Select * FROM {tabela} WHERE IdUsuario = '{id}'";
                 cmd = new SqlCommand(select, con);
                 con.Open();
                 dataReader = cmd.ExecuteReader();
@@ -128,21 +139,21 @@ namespace DAL
 
                 dataReader.Close();
                 con.Close();
-                return false;
+                return true;
             }
             catch(Exception ex)
             {
                 valor = new List<double>();
                 Console.WriteLine(ex);
-                return true;
+                return false;
             }
         }
-        public static bool HistóricoNomes(string tabela, string motivo, string nome, out List<string> nomeConta)
+        public static bool HistóricoNomes(string tabela, string motivo, int Id, out List<string> nomeConta)
         {
             try
             {
                 nomeConta = new List<string>();
-                string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
+                string select = $"Select * FROM {tabela} WHERE IdUsuario = '{Id}'";
                 cmd = new SqlCommand(select, con);
                 con.Open();
                 dataReader = cmd.ExecuteReader();
@@ -166,24 +177,42 @@ namespace DAL
                 return false;
             }
         }
-        public static bool InsertValor(string tabela, string nome, double valor, string motivo)
+        public static bool InsertValor(Usuario usuario, string tabela, double valor, string motivo)
         {
             try
-            {
-                string select = $"Select * FROM '{tabela}' WHERE Nome = '{nome}'";
+            { 
+                string select = $"Select * FROM Usuarios WHERE Id = '{usuario.Id}'";
                 cmd = new SqlCommand(select, con);
                 con.Open();
                 dataReader = cmd.ExecuteReader();
 
+                string insert = "";
                 while (dataReader.Read())
                 {
-                    string insert = $"INSERT Into '{tabela}' (Motivo, Valor) values ('{motivo}','{valor}')";
-                    cmd = new SqlCommand(insert, con);
-                    cmd.ExecuteNonQuery();
+                    insert = $"INSERT Into {tabela} (IdUsuario, Motivo, Valor) values ('{usuario.Id}', '{motivo}', '{valor}')";
                     break;
                 }
-                con.Close();
                 dataReader.Close();
+                cmd = new SqlCommand(insert, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+        public static bool DeleteUsuario(Usuario usuario)
+        {
+            try
+            {
+                string delete = $"Delete From Usuarios Where Id = '{usuario.Id}'";
+                cmd = new SqlCommand(delete, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
                 return true;
             }
             catch(Exception ex)

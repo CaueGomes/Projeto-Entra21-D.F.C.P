@@ -12,8 +12,8 @@ namespace DALTest
         public void TestUpdate()
         {
             Usuario usuario = new Usuario();
-            usuario.Nome = "João";
-            bool resultado = ConnectionDatabase.Update(usuario);
+            usuario.Nome = "João"; string nome = "Admin";
+            bool resultado = ConnectionDatabase.Update(usuario, nome);
             Assert.IsTrue(resultado);
         }
 
@@ -21,7 +21,7 @@ namespace DALTest
         public void TestInsert()
         {
             Usuario usuario = new Usuario();
-            usuario.Nome = "João"; usuario.Email = "kaimanmello123@yahoo.com"; usuario.Senha = "12345"; usuario.Idade = 21; usuario.Profissao = "Desenvolvedor";
+            usuario.Nome = "João"; usuario.Email = "Admin@adm.com"; usuario.Senha = "12345"; usuario.Idade = 21; usuario.Profissao = "Desenvolvedor";
             bool resultado = ConnectionDatabase.Insert(usuario);
             Assert.IsTrue(resultado);
         }
@@ -30,17 +30,17 @@ namespace DALTest
         public void TestValidarUsuarioExistente()
         {
             Usuario usuario = new Usuario();
-            usuario.Nome = "João"; usuario.Email = "kaimanmello123@yahoo.com"; usuario.Senha = "12345"; usuario.Idade = 21; usuario.Profissao = "Desenvolvedor";
-            bool resultado = ConnectionDatabase.Insert(usuario);
-            Assert.IsTrue(resultado);
+            usuario.Nome = "João"; usuario.Email = "Admin@adm.com"; usuario.Senha = "12345"; usuario.Idade = 21; usuario.Profissao = "Desenvolvedor";
+            bool resultado = ConnectionDatabase.ValidarUsuarioExistente(usuario);
+            Assert.IsFalse(resultado);
         }
 
         [TestMethod]
         public void TestHistóricoValores()
         {
             Ganhos ganho = new Ganhos();
-            string tabela = "Ganhos"; string nome = "João"; List<double> lt = new List<double>();
-            bool resultado = ConnectionDatabase.HistóricoValores(tabela, nome, out lt);
+            string tabela = "Ganhos"; int id = 1; List<double> lt = new List<double>();
+            bool resultado = ConnectionDatabase.HistóricoValores(tabela, id, out lt);
             Assert.IsTrue(resultado);
         }
 
@@ -48,27 +48,38 @@ namespace DALTest
         public void TestHistóricoNomes()
         {
             Ganhos ganho = new Ganhos();
-            string tabela = "Ganhos"; string motivo = "Motivo"; string nome = "João"; List<string> lt = new List<string>();
-            bool resultado = ConnectionDatabase.HistóricoNomes(tabela, nome, motivo, out lt);
+            string tabela = "Ganhos"; string motivo = "Motivo"; int id = 1; List<string> lt = new List<string>();
+            bool resultado = ConnectionDatabase.HistóricoNomes(tabela, motivo, id, out lt);
             Assert.IsTrue(resultado);
         }
 
         [TestMethod]
         public void TestInsertValor()
         {
+            Usuario usuario = new Usuario();
             Ganhos ganho = new Ganhos();
-            string tabela = "Ganhos"; string motivo = "Motivo"; string nome = "João"; double valor = 0;
-            bool resultado = ConnectionDatabase.InsertValor(tabela, nome, valor, motivo);
+            usuario.Id = 1015;
+            string tabela = "Ganhos"; string motivo = "Motivo"; double valor = 0;
+            bool resultado = ConnectionDatabase.InsertValor(usuario, tabela, valor, motivo);
             Assert.IsTrue(resultado);
         }
 
-        //[TestMethod]
-        //public void TestLogin()
-        //{
-        //    Usuario usuario = new Usuario();
-        //    string tabela = "Ganhos"; string motivo = "Motivo"; string nome = "João"; double valor = 0;
-        //    bool resultado = ConnectionDatabase.ValidaLogin();
-        //    Assert.IsTrue(resultado);
-        //}
+        [TestMethod]
+        public void TestLogin()
+        {
+            Usuario usuario = new Usuario();
+            usuario.Email = "Admin@adm.com"; usuario.Senha = "2706";
+            bool resultado = ConnectionDatabase.ValidaLogin(usuario);
+            Assert.IsFalse(resultado);
+        }
+
+        [TestMethod]
+        public void TestDelete()
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = 1;
+            bool resultado = ConnectionDatabase.DeleteUsuario(usuario);
+            Assert.IsTrue(resultado);
+        }
     }
 }
