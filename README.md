@@ -4,27 +4,27 @@
 
 Membros:
 
-*Cauê Victor Gomes
-*Kaiman de Mello Cunha
-*João Lucas Boldt Nunes
-*Stefany dos Santos Kulkamp
+* Cauê Victor Gomes  
+* Kaiman de Mello Cunha  
+* João Lucas Boldt Nunes  
+* Stefany dos Santos Kulkamp  
 
-Tecnologias ultilizadas:
+Tecnologias ultilizadas:  
 
-*Visual Studio 2019
-*Visual Studio Code
-*Asp.Net Core MVC
-*HTML
-*C#
-*Css
-*JavaScript
-*Git
-*Sql
+* Visual Studio 2019  
+* Visual Studio Code  
+* Asp.Net Core MVC  
+* HTML  
+* C#  
+* Css  
+* JavaScript  
+* Git  
+* Sql  
 
 
 
 Produzido com:
 
-ASP.NET Core - CoreUI Free Bootstrap Admin Template 
+ASP.NET Core - CoreUI Free Bootstrap Admin Template   
 
 [CoreUI Free Bootstrap Admin Template](https://github.com/coreui/coreui-free-bootstrap-admin-template)
