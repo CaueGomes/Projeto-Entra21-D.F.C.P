@@ -4,22 +4,22 @@
 
 Membros:
 
-Cauê Victor Gomes
-Kaiman de Mello Cunha
-João Lucas Boldt Nunes
-Stefany dos Santos Kulkamp
+*Cauê Victor Gomes
+*Kaiman de Mello Cunha
+*João Lucas Boldt Nunes
+*Stefany dos Santos Kulkamp
 
 Tecnologias ultilizadas:
 
-=> Visual Studio 2019
-=> Visual Studio Code
-=> Asp.Net Core MVC
-=> HTML
-=> C#
-=> Css
-=> JavaScript
-=> Git
-=> MySql
+*Visual Studio 2019
+*Visual Studio Code
+*Asp.Net Core MVC
+*HTML
+*C#
+*Css
+*JavaScript
+*Git
+*Sql
 
 
 
