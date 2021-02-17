@@ -1,4 +1,10 @@
-﻿@{
+﻿@using Metadata;
+@using BLL;
+@model Metadata.Usuario
+
+@{
     ViewData["Title"] = "Ganhos";
 }
 
+
+@Lists.ltValoresGastos(Model.Id);

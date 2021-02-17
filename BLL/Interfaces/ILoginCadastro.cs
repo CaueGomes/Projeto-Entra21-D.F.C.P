@@ -12,13 +12,16 @@ namespace BLL.Interfaces
         {
             ConnectionDatabase.Insert(usuario);
         }
-        public string ValidarUsuario(Usuario usuario)
+        public string ValidaLogin(Usuario usuario)
         {
-            if (ConnectionDatabase.ValidarUsuarioExistente(usuario))
+            if (ConnectionDatabase.ValidaLogin(usuario))
             {
-                return "deu certo";
+                return "";
             }
-            return "ERROR";
+            else
+            {
+                return "ERROR";
+            }
         }
     }
 }
