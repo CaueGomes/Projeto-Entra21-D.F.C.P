@@ -56,5 +56,19 @@ namespace BLL
             Usuario usuario = new Usuario();
             saldo.SomaValores(usuario, out total);
         }
+
+        public static void SomaTotalContas(double total, int id)
+        {
+            ContasBLL contas = new ContasBLL();
+            Usuario usuario = new Usuario();
+            contas.SomaValores(usuario, out total);
+        }
+
+        public static void SomaTotalGastos(double total, int id)
+        {
+            GastosBLL gasto = new GastosBLL();
+            Usuario usuario = new Usuario();
+            gasto.SomaValores(usuario, out total);
+        }
     }
 }
