@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * CoreUI - Open Source Dashboard UI Kit
  * @version v2.0.21
@@ -11175,7 +11175,7 @@ canvas {
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 155px;
+  width: 300px;
   height: 55px;
   padding: 0;
   margin-right: 0;
@@ -11186,17 +11186,22 @@ canvas {
   display: none;
 }
 
-.app-header .navbar-toggler {
-  min-width: 50px;
-  padding: 0.25rem 0;
-}
+    .app-header .navbar-toggler {
+        min-width: 50px;
+        padding: 0.25rem 0;
+        width: 100px;
+    }
 
-.app-header .navbar-toggler:hover .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
+    .app-header .navbar-toggler:hover .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        width: 100px;
+    }
 
 .app-header .navbar-toggler-icon {
   height: 23px;
+  position:absolute;
+  width: 100px;
+  right:300px;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%2373818f' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
