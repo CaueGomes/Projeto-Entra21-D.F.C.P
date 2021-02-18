@@ -26,27 +26,22 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
-        [HttpPost]
         public IActionResult Privacy()
         {
             return View();
         }
-        [HttpPost]
         public IActionResult Ganhos()
         {
             return View();
         }
-        [HttpPost]
         public IActionResult Saldo()
         {
             return View();
         }
-        [HttpPost]
         public IActionResult Contas()
         {
             return View();
         }
-        [HttpPost]
         public IActionResult Gastos()
         {
             return View();
@@ -55,16 +50,11 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
-        [HttpPost]
         public IActionResult Principal()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Home()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public IActionResult CadastroAPI(string nome, string email, string senha, int idade, string profissao)
