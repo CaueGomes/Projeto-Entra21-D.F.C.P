@@ -9,7 +9,7 @@ namespace BLL
 {
     public class GanhosBLL : IPaginas
     {
-        public static List<string> ListaNome(Usuario usuario)
+        public List<string> ListaNome(Usuario usuario)
         {
             string tabela = "Ganhos"; string motivo = "Motivo";
             List<string> lt = new List<string>();
