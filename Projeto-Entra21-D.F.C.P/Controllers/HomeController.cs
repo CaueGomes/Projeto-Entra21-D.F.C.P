@@ -53,6 +53,10 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
+        public IActionResult Principal()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult CadastroAPI(string nome, string email, string senha, int idade, string profissao)
