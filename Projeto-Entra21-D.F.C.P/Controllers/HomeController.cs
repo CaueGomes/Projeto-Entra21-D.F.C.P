@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Metadata;
 using BLL;
 using BLL.Helper;
-//using Projeto_Entra21_DFCP.Models;
 
 
 namespace Projeto_Entra21_DFCP.Controllers
@@ -27,24 +26,27 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [HttpPost]
         public IActionResult Ganhos()
         {
             return View();
         }
+        [HttpPost]
         public IActionResult Saldo()
         {
             return View();
         }
+        [HttpPost]
         public IActionResult Contas()
         {
             return View();
         }
+        [HttpPost]
         public IActionResult Gastos()
         {
             return View();
@@ -53,7 +55,13 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
+        [HttpPost]
         public IActionResult Principal()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Home()
         {
             return View();
         }
@@ -73,7 +81,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             else
             {
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidName(usuario.Nome)
-                return RedirectToAction("/Home/Cadastro");
+                return RedirectToAction("Cadastro");
             }
             if(HelpValidate.IsValidEmail(usuario.Email) == "")
             {
@@ -82,7 +90,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             else
             {
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidEmail(email)
-                return RedirectToAction("/Home/Cadastro");
+                return RedirectToAction("Cadastro");
             }
             if (HelpValidate.IsValidPasscode(usuario.Senha) == "")
             {
@@ -91,7 +99,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             else
             {
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função HelpValidate.IsValidPasscode(senha)
-                return RedirectToAction("/Home/Cadastro");
+                return RedirectToAction("Cadastro");
             }
             if(cadastrar.ValidarUsuario(usuario) == "")
             {
@@ -100,13 +108,13 @@ namespace Projeto_Entra21_DFCP.Controllers
             else
             {
                 //Não sei como fazer, mas se cair nesse else, retorna um alert com essa função cadastrar.Validarusuario(nome)
-                return RedirectToAction("/Home/Cadastro");
+                return RedirectToAction("Cadastro");
             }
             if(validateBool)
             {
                 cadastrar.Inserir(usuario);
             }
-            return RedirectToAction("/Home/index");
+            return RedirectToAction("Principal");
         }
         [HttpPost]
         public IActionResult GanhosAPI(string motivo, double valor, int id)
@@ -115,7 +123,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             usuario.Id = id;
             GanhosBLL ganhosBLL = new GanhosBLL();
             ganhosBLL.CadastrarValor(usuario, valor, motivo);
-            return RedirectToAction("/Home/");
+            return RedirectToAction("Home");
         }
         [HttpPost]
         public IActionResult ContasAPI(string motivo, double valor, int id)
@@ -124,36 +132,30 @@ namespace Projeto_Entra21_DFCP.Controllers
             usuario.Id = id;
             ContasBLL contasBLL = new ContasBLL();
             contasBLL.CadastrarValor(usuario, valor, motivo);
-            return RedirectToAction("/Home/");
+            return RedirectToAction("Home");
         }
-
+        [HttpPost]
         public IActionResult LoginAPI(string email, string senha)
         {
             Usuario usuario = new Usuario();
             LoginBLL loginBLL = new LoginBLL();
             usuario.Email = email; usuario.Senha = senha;
-            loginBLL.ValidarUsuario(usuario);
             if (loginBLL.ValidaLogin(usuario) != "")
             {
-                return RedirectToAction("/Home/Login");
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("/Home/");
+            return RedirectToAction("Principal");
         }
-
-        public IActionResult Home()
-        {
-            return View();
-        }
-
+        [HttpPost]
         public IActionResult SaldoAPI(string motivo, double valor, int id)
         {
             Usuario usuario = new Usuario();
             usuario.Id = id;
             SaldoBLL saldoBLL = new SaldoBLL();
             saldoBLL.CadastrarValor(usuario, valor, motivo);
-            return RedirectToAction("/Homes/");
+            return RedirectToAction("Home");
         }
-
+        [HttpPost]
         public IActionResult GastosAPI(string motivo, double valor, int id)
         {
             Usuario usuario = new Usuario();

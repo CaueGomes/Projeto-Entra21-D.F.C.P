@@ -8,7 +8,7 @@ namespace DAL
 {
     public static class ConnectionDatabase
     {
-        public static SqlConnection con = new SqlConnection(@"Password=admin;Persist Security Info=False;User ID=sa;Initial Catalog=D.F.C.P;Data Source=KORI\SQLEXPRESS");
+        public static SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EagleGameplay\Desktop\Cursos\Projeto-Entra21-D.F.C.P\DAL\DataBaseDFCP.mdf;Integrated Security=True");
         public static SqlCommand cmd;
         public static SqlDataReader dataReader;
 
@@ -110,6 +110,7 @@ namespace DAL
                         return false;
                     }
                 }
+                dataReader.Close();
                 con.Close();
                 return false;
             }

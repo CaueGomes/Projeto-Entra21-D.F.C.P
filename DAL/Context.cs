@@ -18,7 +18,7 @@ namespace DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Password=admin;Persist Security Info=False;User ID=sa;Initial Catalog=D.F.C.P;Data Source=KORI\SQLEXPRESS");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\EagleGameplay\Desktop\Cursos\Projeto-Entra21-D.F.C.P\DAL\DataBaseDFCP.mdf;Integrated Security=True");
         }
     }
 }

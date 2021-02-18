@@ -11,39 +11,52 @@
                     <div class="card-body p-4">
                         <h1>Registrar</h1>
                         <p class="text-muted">Crie sua conta</p>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="icon-user"></i>
-                                </span>
+
+
+                        @*FORM*@
+                        <form action="/Home/CadastroAPI" method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="icon-user"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" name="nome" type="text" placeholder="Nome de usuário">
                             </div>
-                            <input class="form-control" type="text" placeholder="Nome de usuário">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@@</span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@@</span>
+                                </div>
+                                <input class="form-control" name="email" type="text" placeholder="Email">
                             </div>
-                            <input class="form-control" type="text" placeholder="Email">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="icon-lock"></i>
-                                </span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="icon-lock"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" name="senha" type="password" placeholder="Senha">
                             </div>
-                            <input class="form-control" type="password" placeholder="Senha">
-                        </div>
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="icon-lock"></i>
-                                </span>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                    </span>
+                                </div>
+                                <input class="form-control" name="idade" type="number" placeholder="Idade">
                             </div>
-                            <input class="form-control" type="password" placeholder="Confirmar senha">
-                        </div>
-                        <button class="btn btn-block btn-success" type="button">Cadastre-se</button>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                    </span>
+                                </div>
+                                <input class="form-control" name="profissao" type="text" placeholder="Profissão">
+                            </div>
+                            <button class="btn btn-block btn-success" type="submit">Cadastre-se</button>
+                        </form>
+                        @*FORM*@
+
+
                     </div>
-                    
                 </div>
             </div>
         </div>
