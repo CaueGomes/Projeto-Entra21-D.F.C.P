@@ -5,7 +5,7 @@ using Metadata;
 
 namespace BLL
 {
-    public static class Lists
+    public static class StaticMethods
     {
         public static List<double> ltValoresGanhos(int id)
         {
@@ -13,6 +13,13 @@ namespace BLL
             usuario.Id = id;
             GanhosBLL ltg = new GanhosBLL();
             return ltg.Listavalor(usuario);
+        }
+        public static List<string> ltNomesGanhos(int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
+            GanhosBLL ltg = new GanhosBLL();
+            return ltg.ListaNome(usuario);
         }
 
         public static List<double> ltValoresGastos(int id)
@@ -22,6 +29,13 @@ namespace BLL
             GastosBLL ltg = new GastosBLL();
             return ltg.Listavalor(usuario);
         }
+        public static List<string> ltNomesGastos(int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
+            GastosBLL ltg = new GastosBLL();
+            return ltg.ListaNome(usuario);
+        }
 
         public static List<double> ltValoresSaldo(int id)
         {
@@ -30,6 +44,13 @@ namespace BLL
             SaldoBLL lts = new SaldoBLL();
             return lts.Listavalor(usuario);
         }
+        public static List<string> ltNomesSaldo(int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
+            SaldoBLL lts = new SaldoBLL();
+            return lts.ListaNome(usuario);
+        }
 
         public static List<double> ltValoresContas(int id)
         {
@@ -37,6 +58,13 @@ namespace BLL
             usuario.Id = id;
             ContasBLL ltc = new ContasBLL();
             return ltc.Listavalor(usuario);
+        }
+        public static List<string> ltNomesContas(int id)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = id;
+            ContasBLL ltc = new ContasBLL();
+            return ltc.ListaNome(usuario);
         }
 
         public static void ListsHome(out List<double> ltGh, out List<double> ltGt, int id)

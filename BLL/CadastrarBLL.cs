@@ -15,7 +15,7 @@ namespace BLL
         {
             if (ConnectionDatabase.ValidarUsuarioExistente(usuario))
             {
-                return "deu certo";
+                return "";
             }
             return "ERROR";
         }
