@@ -98,5 +98,11 @@ namespace BLL
             Usuario usuario = new Usuario();
             gasto.SomaValores(usuario, out total);
         }
+        public static void SomaTotalGanhos(double total, int id)
+        {
+            GanhosBLL ganho = new GanhosBLL();
+            Usuario usuario = new Usuario();
+            ganho.SomaValores(usuario, out total);
+        }
     }
 }
