@@ -5,6 +5,83 @@
 @{
     ViewData["Title"] = "Ganhos";
 }
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        <div class="row" id="Ganhos">
+            <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-primary" id="caixa">
+                    <div class="card-body pb-0">
+                        <div class="btn-group float-right">
+                        </div>
+                        <style>
+                            #caixa {
+                                height: 25vh;
+                                width: 95vh;
+                            }
 
+                            h33 {
+                                font-size: 30px;
+                                color: white;
+                                position: absolute;
+                                top: 10px;
+                            }
 
-@Lists.ltValoresGastos(Model.Id);
+                            #Cash {
+                                font-size: 55px;
+                                position: absolute;
+                                top: 10vh;
+                            }
+
+                            Ganhos {
+                                padding: 10px;
+                            }
+                        </style>
+                        @*VARIAVEL*@
+                        <div class="text-value" id="Cash">R$10.000</div>
+                        @*VARIAVEL*@
+                        <h33>Ganhos</h33>
+                    </div>
+                    <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                        <canvas class="chart" id="card-chart1" height="70"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <div class="row">
+                        <div class="col-sm-12 col-xl-6">
+                            <div class="card" id="Caixa-2">
+                                <style>
+                                    #Caixa-2{
+                                        position:absolute;
+                                        left:105vh;
+                                        width:60vh;
+                                        height:65vh;
+                                        top:-27.5vh;
+                                    }
+
+                                </style>
+                                <div class="card-header">
+                                    <i class="fa fa-align-justify"></i> Histórico de Ganhos
+                                    <div class="card-header-actions">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-group">
+                                        @*VARIAVEL*@
+                                        <li class="list-group-item">Cras justo odio</li>
+                                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                                        <li class="list-group-item">Morbi leo risus</li>
+                                        <li class="list-group-item">Porta ac consectetur ac</li>
+                                        <li class="list-group-item">Vestibulum at eros</li>
+                                        @*VARIAVEL*@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
