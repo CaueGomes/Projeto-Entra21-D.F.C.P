@@ -100,14 +100,6 @@ namespace DAL
                         {
                             return true;
                         }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
                     }
                 }
                 dataReader.Close();
