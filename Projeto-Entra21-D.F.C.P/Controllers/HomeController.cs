@@ -50,7 +50,7 @@ namespace Projeto_Entra21_DFCP.Controllers
         {
             return View();
         }
-        public IActionResult Principal()
+        public IActionResult Home()
         {
             return View();
         }
@@ -104,7 +104,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             {
                 cadastrar.Inserir(usuario);
             }
-            return RedirectToAction("Principal");
+            return RedirectToAction("Home");
         }
         [HttpPost]
         public IActionResult GanhosAPI(string motivo, double valor, int id)
@@ -134,7 +134,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Principal");
+            return RedirectToAction("Home");
         }
         [HttpPost]
         public IActionResult SaldoAPI(string motivo, double valor, int id)
@@ -152,7 +152,7 @@ namespace Projeto_Entra21_DFCP.Controllers
             usuario.Id = id;
             GastosBLL gastosBLL = new GastosBLL();
             gastosBLL.CadastrarValor(usuario, valor, motivo);
-            return RedirectToAction("/Home/");
+            return RedirectToAction("Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
