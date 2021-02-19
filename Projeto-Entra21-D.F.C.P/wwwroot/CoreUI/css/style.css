@@ -14134,4 +14134,10 @@ body {
   breakpoint-lg: 992px;
   breakpoint-xl: 1200px;
 }
+.CaixaGanhos{
+    display:block;
+    background-color:blue;
+    width: 100vh;
+    height:100vh;
+}
 /*# sourceMappingURL=style.css.map */
